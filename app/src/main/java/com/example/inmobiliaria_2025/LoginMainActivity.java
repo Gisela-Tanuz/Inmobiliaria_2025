@@ -24,12 +24,21 @@ private ActivityLoginMainBinding binding;
         vm = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(LoginMainActivityViewModel.class);
         binding = ActivityLoginMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-     vm.getMensaje().observe(this, new Observer<Integer>() {
+        vm.getMensajeValidacion().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.tvMensaje.setText(s);
+
+            }
+        });
+
+        vm.getMensaje().observe(this, new Observer<Integer>() {
          @Override
          public void onChanged(Integer integer) {
              binding.tvMensaje.setVisibility(integer);
          }
      });
+
      vm.getLogin().observe(this, new Observer<Boolean>() {
          @Override
          public void onChanged(Boolean aBoolean) {

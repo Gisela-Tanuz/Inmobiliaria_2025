@@ -48,6 +48,10 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.legacy.support.v4)
 
+    implementation(libs.glide)
+    implementation(libs.cardview)
+    implementation(libs.play.services.maps)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

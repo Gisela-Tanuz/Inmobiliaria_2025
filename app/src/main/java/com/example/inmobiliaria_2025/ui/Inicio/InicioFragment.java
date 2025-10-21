@@ -8,10 +8,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.inmobiliaria_2025.LoginMainActivityViewModel;
+import com.example.inmobiliaria_2025.R;
 import com.example.inmobiliaria_2025.databinding.FragmentInicioBinding;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class InicioFragment extends Fragment {
 
@@ -23,10 +26,19 @@ public class InicioFragment extends Fragment {
         vm=  new ViewModelProvider(this).get(InicioViewModel.class);
 
         binding = FragmentInicioBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
+        vm.getMapaInmobiliaria().observe(getViewLifecycleOwner(), new Observer<InicioViewModel.Mapa>() {
+            @Override
+            public void onChanged(InicioViewModel.Mapa mapa) {
+                SupportMapFragment supportMapFragment =
+                        (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.maps);
+                supportMapFragment.getMapAsync(mapa);
 
-        return root;
+            }
+        });
+
+        vm.cargarMapa();
+        return binding.getRoot();
     }
 
     @Override

@@ -2,8 +2,6 @@ package com.example.inmobiliaria_2025;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +22,7 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
     private Context context;
     public MutableLiveData<Boolean> mLogin = new MutableLiveData<>();
     public  MutableLiveData<Integer>mMensaje = new MutableLiveData<>();
+    private MutableLiveData<String> mMensajeValidacion = new MutableLiveData<>();
     public LoginMainActivityViewModel(@NonNull Application application) {
         super(application);
         context = getApplication();
@@ -37,9 +36,28 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
     {
         return  mMensaje;
     }
+    public LiveData<String> getMensajeValidacion()
+    {
+        return  mMensajeValidacion;
+    }
 
     public void Ingresar(String usuario, String pass)
     {
+        // ✅ Validaciones antes de llamar a la API
+        if (usuario == null || usuario.trim().isEmpty()) {
+            mMensajeValidacion.postValue("Debe ingresar un usuario");
+
+            mMensaje.postValue(View.VISIBLE);
+            return; // corta la ejecución
+        }
+
+        if (pass == null || pass.trim().isEmpty()) {
+            mMensajeValidacion.postValue("Debe ingresar una contraseña");
+
+            mMensaje.postValue(View.VISIBLE);
+            return;
+        }
+
        try{
             ApiClient.InmoServicios api = ApiClient.getApi();
             Call<String> llamada = api.login(usuario,pass);
@@ -54,23 +72,28 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
                         ApiClient.guardarToken(context, token);
                         mLogin.postValue(true);
                         mMensaje.postValue(View.INVISIBLE);
+                        mMensajeValidacion.postValue("");
 
                     }else
                     {
                         mMensaje.postValue(View.VISIBLE);
+                        mMensajeValidacion.postValue("Usuario o clave incorrecta");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Toast.makeText(getApplication(),"Error en el servicio",Toast.LENGTH_LONG).show();
+                    mMensaje.postValue(View.VISIBLE);
+                    mMensajeValidacion.postValue("Error en el servicio");
+
                     Log.d("Login", "Error de red" + t.getMessage());
                 }
             });
 
       }catch (NumberFormatException ex)
        {
-        Toast.makeText(getApplication(),"Error",Toast.LENGTH_LONG).show();        }
+        Toast.makeText(getApplication(),"Error",Toast.LENGTH_LONG).show();
+       }
 
 
     }
