@@ -79,6 +79,7 @@ public class PerfilViewModel extends AndroidViewModel {
            {
                mEstado.setValue(true);
                mTextoBoton.setValue("Guardar");
+               mMensaje.setValue("");
            }else
            {  //Recupera el propietario
                Propietarios p = new Propietarios();
@@ -90,22 +91,22 @@ public class PerfilViewModel extends AndroidViewModel {
                p.setTelefono(telefono);
                mEstado.setValue(false);
                mTextoBoton.setValue("Editar");
-
-
-               if (nombre.isBlank() || nombre.trim().isEmpty()) {
+               mMensaje.setValue("");
+               //validaciones
+               if (nombre == null || nombre.trim().isEmpty()) {
                    mMensaje.postValue("Debe ingresar un nombre");
 
                    return;
                }
-               if (apellido.isBlank() || apellido.trim().isEmpty()) {
+               if (apellido == null || apellido.trim().isEmpty()) {
                    mMensaje.postValue("Debe ingresar un apelildo");
                    return;
                }
-               if (mail.isBlank() || mail.trim().isEmpty()) {
+               if (mail == null || mail.trim().isEmpty()) {
                    mMensaje.postValue("Debe ingresar un email");
                    return;
                }
-               if (dni.isBlank() || dni.trim().isEmpty()) {
+               if (dni == null || dni.trim().isEmpty()) {
                    mMensaje.postValue("Debe ingresar un dni");
                    return;
                }else

@@ -64,14 +64,15 @@ public class PerfilFragment extends Fragment {
         vm.obtenerPropietario();
 
         binding.btnEditar.setOnClickListener(new View.OnClickListener() {
-            String nombre = binding.etNombre.getText().toString();
-            String apellido = binding.etApellido.getText().toString();
-            String dni = binding.etDni.getText().toString();
-            String mail = binding.etEmail.getText().toString();
-            String telefono = binding.etTelefono.getText().toString();
+
 
             @Override
             public void onClick(View view) {
+                String nombre = binding.etNombre.getText().toString().trim();
+                String apellido = binding.etApellido.getText().toString().trim();
+                String dni = binding.etDni.getText().toString().trim();
+                String mail = binding.etEmail.getText().toString().trim();
+                String telefono = binding.etTelefono.getText().toString().trim();
                 vm.actualizarPerfil(binding.btnEditar.getText().toString(),nombre, apellido,dni,mail, telefono );
             }
         });
