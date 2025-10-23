@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.inmobiliaria_2025.modelos.Propietarios;
 import com.example.inmobiliaria_2025.request.ApiClient;
 
 import retrofit2.Call;
@@ -23,6 +24,7 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
     public MutableLiveData<Boolean> mLogin = new MutableLiveData<>();
     public  MutableLiveData<Integer>mMensaje = new MutableLiveData<>();
     private MutableLiveData<String> mMensajeValidacion = new MutableLiveData<>();
+    private  MutableLiveData<Propietarios> mPropietario = new MutableLiveData<>();
     public LoginMainActivityViewModel(@NonNull Application application) {
         super(application);
         context = getApplication();
@@ -40,15 +42,19 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
     {
         return  mMensajeValidacion;
     }
+    public LiveData<Propietarios> getMPropietario()
+    {
+        return  mPropietario;
+    }
 
     public void Ingresar(String usuario, String pass)
     {
-        // ✅ Validaciones antes de llamar a la API
+        //Validaciones
         if (usuario == null || usuario.trim().isEmpty()) {
             mMensajeValidacion.postValue("Debe ingresar un usuario");
 
             mMensaje.postValue(View.VISIBLE);
-            return; // corta la ejecución
+            return;
         }
 
         if (pass == null || pass.trim().isEmpty()) {
@@ -92,9 +98,32 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
 
       }catch (NumberFormatException ex)
        {
-        Toast.makeText(getApplication(),"Error",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplication(),"Error en el servicio",Toast.LENGTH_LONG).show();
        }
 
 
+    }
+    private void headeroPietario() {
+        String token = ApiClient.leerToken(getApplication());
+        //Log.d("TOKEN_DEBUG", "Token actual: " + token);
+        ApiClient.InmoServicios api = ApiClient.getApi();
+        Call<Propietarios> call = api.getPropietario("Bearer " + token);
+
+        call.enqueue(new Callback<Propietarios>() {
+            @Override
+            public void onResponse(Call<Propietarios> call, Response<Propietarios> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    mPropietario.postValue(response.body());
+                } else {
+                    mMensajeValidacion.postValue("Error al cargar los datos del propietario.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Propietarios> call, Throwable t) {
+                Toast.makeText(getApplication(),"Error en el servicio",Toast.LENGTH_LONG).show();
+            }
+
+        });
     }
 }

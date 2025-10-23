@@ -3,10 +3,13 @@ package com.example.inmobiliaria_2025;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.inmobiliaria_2025.modelos.Propietarios;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.inmobiliaria_2025.databinding.ActivityMainBinding;
 
 public class MenuNavegable extends AppCompatActivity {
-
+    private LoginMainActivityViewModel vm;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -29,16 +32,17 @@ public class MenuNavegable extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
+//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .setAnchorView(R.id.fab).show();
+//            }
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        iniciarHeader(navigationView);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -62,5 +66,22 @@ public class MenuNavegable extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    private void iniciarHeader(NavigationView navigationView){
+
+        View header = navigationView.getHeaderView(0);
+
+        TextView nombre= header.findViewById(R.id.tvNombreheader);
+        TextView email= header.findViewById(R.id.tvEmailHeader);
+
+        //ViewModel y Observers
+        vm = new ViewModelProvider(this).get(LoginMainActivityViewModel.class);
+
+        vm.getMPropietario().observe(this, p -> {
+            nombre.setText(p.getNombre() + " " + p.getApellido());
+            email.setText(p.getEmail());
+        });
+
+
     }
 }

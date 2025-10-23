@@ -23,8 +23,9 @@
         android:label="Inmuebles"
         tools:layout="@layout/fragment_inmuebles" >
         <action
-            android:id="@+id/nav_Inmuebles"
+            android:id="@+id/action_nav_inmuebles_to_detalleInmueble"
             app:destination="@id/nav_detalleInmueble" />
+
     </fragment>
     <fragment
         android:id="@+id/nav_inquilinos"
@@ -44,7 +45,7 @@
 
         >
         <action
-            android:id="@+id/nav_Detalle"
+            android:id="@+id/action_nav_detalleInmueble_to_inmuebles"
             app:destination="@id/nav_inmuebles" />
     </fragment>
 </navigation>

@@ -3,6 +3,7 @@ package com.example.inmobiliaria_2025.ui.Inmuebles;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.ScaleAnimation;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class DetalleInmueblesViewModel extends AndroidViewModel {
     private Context context;
     public DetalleInmueblesViewModel(@NonNull Application application) {
         super(application);
-        context.getApplicationContext();
+        context = getApplication();
 
     }
 public LiveData<Inmuebles> getInmuebles()
@@ -35,7 +36,9 @@ public LiveData<Inmuebles> getInmuebles()
 
 public  void ObtenerDetallesInmuebles(Bundle inmueblebundle)
 {
-    Inmuebles inmuebles = (Inmuebles) inmueblebundle.getSerializable("inmueble");
+    Inmuebles inmuebles = (Inmuebles)inmueblebundle.getSerializable("inmueble");
+    Log.d("Detalle Inmueble","Error" + inmuebles);
+
     if(inmuebles != null)
     {
       this.mInmueble.setValue(inmuebles);
@@ -45,19 +48,20 @@ public  void ObtenerDetallesInmuebles(Bundle inmueblebundle)
 }
 
 
-public  void actualizarInmueble(Boolean diasponible )
+public  void actualizarInmueble(Boolean disponible )
 {
     Inmuebles inmuebles = new Inmuebles();
-    inmuebles.setDisponible(diasponible);
+    inmuebles.setDisponible(disponible);
     inmuebles.setIdInmueble(this.mInmueble.getValue().getIdInmueble());
 
-     String token = ApiClient.leerToken(getApplication());
-     Call<Inmuebles> llamada = ApiClient.getApi().actualizarInmueble("Bearer" + token, inmuebles);
+     String token = ApiClient.leerToken(context);
+     Call<Inmuebles> llamada = ApiClient.getApi().actualizarInmueble("Bearer " + token, inmuebles);
      llamada.enqueue(new Callback<Inmuebles>() {
          @Override
          public void onResponse(Call<Inmuebles> call, Response<Inmuebles> response) {
            if(response.isSuccessful())
            {
+
                Toast.makeText(context, "Inmueble actualizado correctamente", Toast.LENGTH_LONG).show();
            }   else
            {

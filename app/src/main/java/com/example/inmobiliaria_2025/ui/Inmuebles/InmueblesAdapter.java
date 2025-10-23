@@ -23,9 +23,11 @@ import java.util.List;
 public class InmueblesAdapter extends RecyclerView.Adapter<InmueblesAdapter.InmueblesViewHolder> {
     private Context context;
     private List<Inmuebles> lista;
-    public InmueblesAdapter(List<Inmuebles> lista, Context context) {
+    private LayoutInflater layoutInflater;
+    public InmueblesAdapter(List<Inmuebles> lista, Context context,LayoutInflater layoutInflater) {
         this.lista = lista;
         this.context = context;
+        this.layoutInflater= layoutInflater;
     }
 
     @NonNull
@@ -38,19 +40,19 @@ public class InmueblesAdapter extends RecyclerView.Adapter<InmueblesAdapter.Inmu
 
     @Override
     public void onBindViewHolder(@NonNull InmueblesAdapter.InmueblesViewHolder holder, int position) {
-        Inmuebles inmuebles = lista.get(position);
-        holder.tvDireccion.setText(inmuebles.getDireccion());
-        holder.tvTipo.setText(inmuebles.getTipo());
-        holder.tvPrecio.setText(String.valueOf(inmuebles.getValor()));
+        Inmuebles i = lista.get(position);
+        holder.tvDireccion.setText(i.getDireccion());
+        holder.tvTipo.setText(i.getTipo());
+        holder.tvPrecio.setText(String.valueOf(i.getValor()));
         Glide.with(context)
-                .load(ApiClient.URLBASE + inmuebles.getImagen())
+                .load(ApiClient.URLBASE + i.getImagen())
                 .placeholder(R.drawable.inmuebles)
                 .error("null")
                 .into(holder.imgInmueble);
 
         holder.cardView.setOnClickListener(v ->{
             Bundle bundle = new Bundle();
-            bundle.putSerializable("inmueble", inmuebles);
+            bundle.putSerializable("inmueble", i);
             Navigation.findNavController((Activity)v.getContext(), R.id.nav_host_fragment_content_main).navigate(R.id.nav_detalleInmueble, bundle);
 
         });

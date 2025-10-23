@@ -32,14 +32,14 @@ public class InmueblesFragment extends Fragment {
        vm.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmuebles>>() {
            @Override
            public void onChanged(List<Inmuebles> inmuebles) {
-               InmueblesAdapter adapter = new InmueblesAdapter(inmuebles,getContext());
+               InmueblesAdapter adapter = new InmueblesAdapter(inmuebles,getContext(),getLayoutInflater());
                GridLayoutManager glm = new GridLayoutManager(getContext(),2);//cantidad de card view en la vista
                RecyclerView rv = binding.rvListaInmuebles;
                rv.setLayoutManager(glm);
                rv.setAdapter(adapter);
            }
        });
-         vm.leerInmuebles();
+       //  vm.leerInmuebles();
          return binding.getRoot();
     }
 

@@ -28,6 +28,9 @@ public class InmueblesViewModel extends AndroidViewModel {
     public InmueblesViewModel(@NonNull Application application) {
         super(application);
         context = getApplication();
+
+
+        leerInmuebles();
     }
 
     public LiveData<List<Inmuebles>> getListaInmuebles() {
@@ -38,8 +41,9 @@ public class InmueblesViewModel extends AndroidViewModel {
 
     public  void leerInmuebles()
     {
-      String token = ApiClient.leerToken(context);    ApiClient.InmoServicios api = ApiClient.getApi();
-       Call<List<Inmuebles>> llamada = api.obtenerInmuebles("Bearer" + token );
+      String token = ApiClient.leerToken(context);
+      ApiClient.InmoServicios api = ApiClient.getApi();
+      Call<List<Inmuebles>> llamada = api.obtenerInmuebles("Bearer " + token );
 llamada.enqueue(new Callback<List<Inmuebles>>() {
     @Override
     public void onResponse(Call<List<Inmuebles>> call, Response<List<Inmuebles>> response) {
