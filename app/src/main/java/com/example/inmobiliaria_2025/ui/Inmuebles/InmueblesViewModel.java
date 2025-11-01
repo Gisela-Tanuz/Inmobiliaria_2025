@@ -30,7 +30,7 @@ public class InmueblesViewModel extends AndroidViewModel {
         context = getApplication();
 
 
-        leerInmuebles();
+
     }
 
     public LiveData<List<Inmuebles>> getListaInmuebles() {

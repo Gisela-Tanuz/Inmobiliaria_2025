@@ -103,27 +103,5 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
 
 
     }
-    private void headeroPietario() {
-        String token = ApiClient.leerToken(getApplication());
-        //Log.d("TOKEN_DEBUG", "Token actual: " + token);
-        ApiClient.InmoServicios api = ApiClient.getApi();
-        Call<Propietarios> call = api.getPropietario("Bearer " + token);
 
-        call.enqueue(new Callback<Propietarios>() {
-            @Override
-            public void onResponse(Call<Propietarios> call, Response<Propietarios> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    mPropietario.postValue(response.body());
-                } else {
-                    mMensajeValidacion.postValue("Error al cargar los datos del propietario.");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Propietarios> call, Throwable t) {
-                Toast.makeText(getApplication(),"Error en el servicio",Toast.LENGTH_LONG).show();
-            }
-
-        });
-    }
 }
