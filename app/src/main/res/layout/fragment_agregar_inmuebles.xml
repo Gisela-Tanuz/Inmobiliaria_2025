@@ -122,9 +122,9 @@
 
     <Button
         android:id="@+id/btnAgregarInmueble"
-        android:layout_width="166dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="157dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="44dp"
         android:text="Agregar Inmueble"
         app:layout_constraintEnd_toEndOf="parent"

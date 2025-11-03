@@ -113,13 +113,13 @@ public class PerfilViewModel extends AndroidViewModel {
                {
                    if(!dni.matches("\\d+"))
                    {
-                       mMensaje.postValue("Debe ingresar un valor numerico en el campo teléfono");
+                       mMensaje.postValue("Debe ingresar un valor numerico en el campo dni");
                        return;
 
                    }
                }
                if (telefono.isBlank() || telefono.trim().isEmpty()) {
-                   mMensaje.postValue("Debe ingresar un valor numerico en el campo dni");
+                   mMensaje.postValue("Debe ingresar un valor numerico en el campo teléfono");
                    return;
                }else
                {

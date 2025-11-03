@@ -24,6 +24,7 @@ public class InmueblesViewModel extends AndroidViewModel {
 
 
     private final MutableLiveData<List<Inmuebles>> mlistaInmuebles = new MutableLiveData<>();
+
    private Context context;
     public InmueblesViewModel(@NonNull Application application) {
         super(application);
