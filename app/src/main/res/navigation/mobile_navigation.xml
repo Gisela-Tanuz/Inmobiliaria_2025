@@ -59,6 +59,24 @@
             android:id="@+id/action_agregarInmueblesFragment_to_nav_inmuebles"
             app:destination="@id/nav_inmuebles" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.example.inmobiliaria_2025.ui.Contratos.ContratosFragment"
+        android:label="Contratos Vigentes"
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_nav_contratos_to_detalleContratosFragment"
+            app:destination="@id/nav_detalleContratosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detalleContratosFragment"
+        android:name="com.example.inmobiliaria_2025.ui.Contratos.DetalleContratosFragment"
+        android:label="Detalle Contrato"
+        tools:layout="@layout/fragment_detalle_contratos" >
+        <action
+            android:id="@+id/action_detalleContratosFragment_to_nav_contratos"
+            app:destination="@id/nav_contratos" />
+    </fragment>
 
 
 </navigation>

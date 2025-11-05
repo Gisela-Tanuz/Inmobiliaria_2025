@@ -29,9 +29,6 @@ public class InmueblesViewModel extends AndroidViewModel {
     public InmueblesViewModel(@NonNull Application application) {
         super(application);
         context = getApplication();
-
-
-
     }
 
     public LiveData<List<Inmuebles>> getListaInmuebles() {

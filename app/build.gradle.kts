@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.cardview)
     implementation(libs.play.services.maps)
+    implementation(libs.recyclerview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

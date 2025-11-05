@@ -61,25 +61,7 @@ public class DetalleInmueblesFragment extends Fragment {
          });
         return binding.getRoot();
 
-
-
     }
 
 
-//    private void onChanged(Inmuebles inmuebles) {
-//
-//        binding.tvIdInmueble.setText(inmuebles.getIdInmueble() + "");
-//        binding.tvDireccionI.setText(inmuebles.getDireccion() );
-//        binding.tvUsoI.setText(inmuebles.getUso() );
-//        binding.tvAmbientesI.setText(inmuebles.getAmbientes() + "");
-//        binding.tvLatitudI.setText(inmuebles.getLatitud() + "");
-//        binding.tvInfoLongitud.setText(inmuebles.getLongitud() + "");
-//        binding.tvValorI.setText(inmuebles.getValor() + "");
-//        Glide.with(
-//                this)
-//                .load(ApiClient.URLBASE + inmuebles.getImagen())
-//                .placeholder(R.drawable.inmuebles)
-//                .error("null")
-//                .into(binding.imgInmuebleD);
-//    }
 }

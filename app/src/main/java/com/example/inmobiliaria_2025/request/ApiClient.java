@@ -3,7 +3,9 @@ package com.example.inmobiliaria_2025.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.inmobiliaria_2025.modelos.Contratos;
 import com.example.inmobiliaria_2025.modelos.Inmuebles;
+import com.example.inmobiliaria_2025.modelos.Pagos;
 import com.example.inmobiliaria_2025.modelos.Propietarios;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,6 +26,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public class ApiClient {
 
@@ -77,5 +80,15 @@ public static  final String URLBASE= "https://inmobiliariaulp-amb5hwfqaraweyga.c
         @Multipart
         @POST("api/Inmuebles/cargar")
         Call<Inmuebles> cargarInmuebles(@Header("Authorization") String token, @Part MultipartBody.Part imagen, @Part("inmueble")RequestBody inmueble);
+
+        @GET("api/Inmuebles/GetContratoVigente")
+        Call<List<Inmuebles>> obtenerContratosVigentes(@Header("Authorization") String token);
+
+        @GET("api/contratos/inmueble/{id}")
+        Call<Contratos> obtenerContratosPorInmuebles(@Header("Authorization") String token,@Path("id") int id );
+        @GET("Pagos/listaPagos/{id}")
+        Call<List<Pagos>> ObtenerPagosPorContratos(@Header("Authorization") String token, @Path("id") int id );
+
+
     }
 }

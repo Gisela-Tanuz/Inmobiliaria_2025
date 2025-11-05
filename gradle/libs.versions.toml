@@ -18,6 +18,7 @@ annotations = "4.16.0"
 glide = "4.16.0"
 cardview = "1.0.0"
 playServicesMaps = "19.2.0"
+recyclerview = "1.4.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -38,6 +39,7 @@ annotations = { group = "com.github.bumptech.glide", name = "annotations", versi
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
