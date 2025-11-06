@@ -69,7 +69,6 @@ public class ContratosAdapter extends RecyclerView.Adapter<ContratosAdapter.Cont
         return lista.size();
     }
 
-
     public class ContratoViewHolder extends RecyclerView.ViewHolder{
         private TextView tvDireccionInmCon, tvTipoInmCon, tvPrecioInmCon;
         private ImageView imgInmuebleContrato;

@@ -33,8 +33,12 @@
     <fragment
         android:id="@+id/nav_inquilinos"
         android:name="com.example.inmobiliaria_2025.ui.Inquilinos.InquilinosFragment"
-        android:label="Inquilinos"
-        tools:layout="@layout/fragment_inquilinos" />
+        android:label="Datos del Inquilino"
+        tools:layout="@layout/fragment_inquilinos" >
+        <action
+            android:id="@+id/action_nav_inquilinos_to_nav_detalleContratosFragment"
+            app:destination="@id/nav_detalleContratosFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_cerrar"
         android:name="com.example.inmobiliaria_2025.ui.CerrarSesion.CerrarSesionFragment"
@@ -76,6 +80,9 @@
         <action
             android:id="@+id/action_detalleContratosFragment_to_nav_contratos"
             app:destination="@id/nav_contratos" />
+        <action
+            android:id="@+id/action_nav_detalleContratosFragment_to_nav_inquilinos"
+            app:destination="@id/nav_inquilinos" />
     </fragment>
 
 

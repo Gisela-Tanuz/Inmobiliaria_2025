@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ public class DetalleContratosFragment extends Fragment {
 
     private DetalleContratosViewModel vm;
     private FragmentDetalleContratosBinding binding;
+    private Contratos contratoActual;
     public static DetalleContratosFragment newInstance() {
         return new DetalleContratosFragment();
     }
@@ -38,6 +41,7 @@ public class DetalleContratosFragment extends Fragment {
        vm.getContratos().observe(getViewLifecycleOwner(), new Observer<Contratos>() {
     @Override
     public void onChanged(Contratos contratos) {
+        contratoActual = contratos;
         binding.tvIdContrato.setText(contratos.getIdContrato()+" ");
         LocalDate ldI = LocalDate.parse(contratos.getFechaInicio()); // parsea la fecha "2025-08-051"
         String fechaInicioFormateada = ldI.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -50,7 +54,14 @@ public class DetalleContratosFragment extends Fragment {
         binding.tvMonto.setText(contratos.getMontoAlquiler()+" ");
     }
 });
-
+       binding.btnVerInquilino.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("inquilino",contratoActual.getInquilino());
+               Navigation.findNavController(v).navigate(R.id.nav_inquilinos,bundle);
+           }
+       });
        return binding.getRoot();
     }
 
