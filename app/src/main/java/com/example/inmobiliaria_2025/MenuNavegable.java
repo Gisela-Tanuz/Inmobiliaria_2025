@@ -1,5 +1,7 @@
 package com.example.inmobiliaria_2025;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -60,21 +62,13 @@ public class MenuNavegable extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    private void iniciarHeader(NavigationView navigationView){
-
+    private void iniciarHeader(NavigationView navigationView) {
         View header = navigationView.getHeaderView(0);
+        TextView nombre = header.findViewById(R.id.tvNombreheader);
+        TextView email = header.findViewById(R.id.tvEmailHeader);
 
-        TextView nombre= header.findViewById(R.id.tvNombreheader);
-        TextView email= header.findViewById(R.id.tvEmailHeader);
-
-        //ViewModel y Observers
-        vm = new ViewModelProvider(this).get(LoginMainActivityViewModel.class);
-
-        vm.getMPropietario().observe(this, p -> {
-            nombre.setText(p.getNombre() + " " + p.getApellido());
-            email.setText(p.getEmail());
-        });
-
-
+        SharedPreferences sp = getSharedPreferences("datos_usuario", Context.MODE_PRIVATE);
+        nombre.setText(sp.getString("nombre", "Usuario"));
+        email.setText(sp.getString("email", "usuario@ejemplo.com"));
     }
 }

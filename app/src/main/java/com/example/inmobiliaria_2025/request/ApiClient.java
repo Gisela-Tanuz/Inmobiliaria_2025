@@ -86,7 +86,7 @@ public static  final String URLBASE= "https://inmobiliariaulp-amb5hwfqaraweyga.c
 
         @GET("api/contratos/inmueble/{id}")
         Call<Contratos> obtenerContratosPorInmuebles(@Header("Authorization") String token,@Path("id") int id );
-        @GET("Pagos/listaPagos/{id}")
+        @GET("api/pagos/contrato/{id}")
         Call<List<Pagos>> ObtenerPagosPorContratos(@Header("Authorization") String token, @Path("id") int id );
 
 

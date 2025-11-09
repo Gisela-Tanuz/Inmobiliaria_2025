@@ -36,7 +36,7 @@ public class DetalleContratosViewModel extends AndroidViewModel {
         int idInmueble =  bundle.getInt("contrato");
         ObtenerDetalleContrato(idInmueble);
     }
-    public void ObtenerDetalleContrato(int idInmueble)
+    private void ObtenerDetalleContrato(int idInmueble)
     {
 
         String token = ApiClient.leerToken(context);

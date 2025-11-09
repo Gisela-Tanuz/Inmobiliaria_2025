@@ -83,6 +83,18 @@
         <action
             android:id="@+id/action_nav_detalleContratosFragment_to_nav_inquilinos"
             app:destination="@id/nav_inquilinos" />
+        <action
+            android:id="@+id/action_nav_detalleContratosFragment_to_pagosFragment"
+            app:destination="@id/nav_pagos" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_pagos"
+        android:name="com.example.inmobiliaria_2025.ui.Pagos.PagosFragment"
+        android:label="Detalles de Pagos"
+        tools:layout="@layout/fragment_pagos" >
+        <action
+            android:id="@+id/action_pagosFragment_to_nav_detalleContratosFragment"
+            app:destination="@id/nav_detalleContratosFragment" />
     </fragment>
 
 

@@ -52,16 +52,28 @@ public class DetalleContratosFragment extends Fragment {
         binding.tvEstado.setText(contratos.isEstado()?"Activo": "Inactivo");
         binding.tvInquilinoNombre.setText(contratos.getInquilino().getNombre() +" " + contratos.getInquilino().getApellido()+"");
         binding.tvMonto.setText(contratos.getMontoAlquiler()+" ");
-    }
-});
-       binding.btnVerInquilino.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
+
+        binding.btnVerInquilino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("inquilino",contratoActual.getInquilino());
-               Navigation.findNavController(v).navigate(R.id.nav_inquilinos,bundle);
-           }
-       });
+                Navigation.findNavController(v).navigate(R.id.nav_inquilinos,bundle);
+            }
+        });
+
+        binding.btnVerPagos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("pagos",contratoActual.getIdContrato());
+                Navigation.findNavController(v).navigate(R.id.nav_pagos,bundle);
+            }
+        });
+
+    }
+});
+
        return binding.getRoot();
     }
 

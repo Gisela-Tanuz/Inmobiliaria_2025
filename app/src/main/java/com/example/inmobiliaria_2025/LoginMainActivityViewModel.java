@@ -2,6 +2,7 @@ package com.example.inmobiliaria_2025;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -76,6 +77,35 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
                         String token = response.body();
 
                         ApiClient.guardarToken(context, token);
+
+                        Call<Propietarios> llamadaPerfil = api.getPropietario("Bearer " + token);
+                        llamadaPerfil.enqueue(new Callback<Propietarios>() {
+                            @Override
+                            public void onResponse(Call<Propietarios> call, Response<Propietarios> responsePerfil) {
+                                if (responsePerfil.isSuccessful()) {
+                                    Propietarios propietario = responsePerfil.body();
+
+
+                                    SharedPreferences sp = context.getSharedPreferences("datos_usuario", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sp.edit();
+                                    editor.putString("nombre", propietario.getNombre() + " " + propietario.getApellido());
+                                    editor.putString("email", propietario.getEmail());
+
+                                    editor.apply();
+                                }
+
+                                mLogin.postValue(true);
+                                mMensaje.postValue(View.INVISIBLE);
+                                mMensajeValidacion.postValue("");
+                            }
+
+                            @Override
+                            public void onFailure(Call<Propietarios> call, Throwable t) {
+
+                                mLogin.postValue(true);
+                            }
+                        });
+
                         mLogin.postValue(true);
                         mMensaje.postValue(View.INVISIBLE);
                         mMensajeValidacion.postValue("");
@@ -100,8 +130,6 @@ public class LoginMainActivityViewModel extends AndroidViewModel {
        {
         Toast.makeText(getApplication(),"Error en el servicio",Toast.LENGTH_LONG).show();
        }
-
-
     }
 
 }

@@ -14,6 +14,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="64dp"
         android:text="Apellido: "
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text=""
+        android:textColor="#673AB7"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -35,6 +40,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:text="Nombre: "
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -44,6 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text=""
+        android:textColor="#673AB7"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/textView9"
@@ -55,6 +65,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:text="DNI:"
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -64,6 +77,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text=""
+        android:textColor="#673AB7"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -75,6 +90,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:text="Teléfono"
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -84,6 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text=""
+        android:textColor="#673AB7"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -95,6 +115,9 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:text="Email: "
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -104,6 +127,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text=""
+        android:textColor="#673AB7"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/textView12"
